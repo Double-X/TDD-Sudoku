@@ -1,0 +1,1 @@
+These diagrams, which aims to reveal the basic knowledge on what this app does, are drawn using https://www.draw.io/.

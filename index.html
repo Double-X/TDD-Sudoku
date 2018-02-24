@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <meta charset="utf-8">
+
+        <title>Sudoku</title>
+
+        <link rel="stylesheet" href="css/game.css">
+        <link rel="stylesheet" href="css/popup.css">
+
+    </head>
+
+    <body>
+
+        <!-- This must be placed at the top in order to work -->
+        <div class="modal invisible" id="overlay">
+
+            <div class="modal-content invisible" id="alert">
+                <p id="alertMsg"></p>
+                <button id="alertClose">OK</span>
+            </div>
+
+            <div class="modal-content invisible" id="prompt">
+                <p id="promptMsg"></p>
+                <input id="promptInput" type="text">
+                <button id="promptClose">OK</span>
+            </div>
+
+        </div>
+        <!-- -->
+
+        <div id="game">
+
+            <div id="info">
+
+                <button id="relaxed">Relaxed Difficulty</button>
+                <button id="easy">Easy Difficulty</button>
+                <button id="normal">Normal Difficulty</button>
+                <button id="hard">Hard Difficulty</button>
+                <button id="insane">Insane Difficulty</button>
+
+                <p id="validChars"></p>
+
+                <label for="playDemo">Play Demo</label>
+                <input id="playDemo" name="Play Demo" type="file" />
+                <p class="invisible" id="playingDemo">PLEASE DO NOT TOUCH ANYTHING WHEN THE DEMO IS PLAYING!</p>
+
+            </div>
+
+            <hr>
+
+            <div id="timer">
+                <input checked id="timerVisibility" type="checkbox">
+                <label for="timerVisibility">Show Timer</label>
+                <p id="timerTxt"></p>
+            </div>
+
+            <hr>
+
+            <div id="boardHost" class="board"><div id="board"></div></div>
+
+        </div>
+
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+
+        <script type="text/javascript" src="js/compositionRoot/compositionRoot.js"></script>
+        <script type="text/javascript" src="js/compositionRoot/fmCompositionRoot.js"></script>
+        <script type="text/javascript" src="js/compositionRoot/fvCompositionRoot.js"></script>
+        <script type="text/javascript" src="js/fn/model/board/fmBaseBoard.js"></script>
+        <script type="text/javascript" src="js/fn/model/board/fmBoard.js"></script>
+        <script type="text/javascript" src="js/fn/model/board/fmNewBoard.js"></script>
+        <script type="text/javascript" src="js/fn/model/filledCoors/fmBaseFilledCoors.js"></script>
+        <script type="text/javascript" src="js/fn/model/filledCoors/fmFilledCoors.js"></script>
+        <script type="text/javascript" src="js/fn/model/filledCoors/fmNewFilledCoors.js"></script>
+        <script type="text/javascript" src="js/fn/model/fmAPIs.js"></script>
+        <script type="text/javascript" src="js/fn/model/fmFilledCoorNoMinMax.js"></script>
+        <script type="text/javascript" src="js/fn/model/fmInputViolations.js"></script>
+        <script type="text/javascript" src="js/fn/model/fmIsWon.js"></script>
+        <script type="text/javascript" src="js/fn/model/fmJSONIO.js"></script>
+        <script type="text/javascript" src="js/fn/model/fmNewData.js"></script>
+        <script type="text/javascript" src="js/fn/model/fmPickedCombination.js"></script>
+        <script type="text/javascript" src="js/fn/model/fmRecDemo.js"></script>
+        <script type="text/javascript" src="js/fn/view/sq/fvRenderedFixedSq.js"></script>
+        <script type="text/javascript" src="js/fn/view/sq/fvRenderedSq.js"></script>
+        <script type="text/javascript" src="js/fn/view/sq/fvRenderedSqs.js"></script>
+        <script type="text/javascript" src="js/fn/view/sq/fvRenderSqParams.js"></script>
+        <script type="text/javascript" src="js/fn/view/sq/fvRenderSqs.js"></script>
+        <script type="text/javascript" src="js/fn/view/fvPlayDemo.js"></script>
+        <script type="text/javascript" src="js/fn/view/fvRenderBoard.js"></script>
+        <script type="text/javascript" src="js/fn/view/fvRenderDoms.js"></script>
+        <script type="text/javascript" src="js/fn/view/fvRenderedDoms.js"></script>
+        <script type="text/javascript" src="js/fn/view/fvShowMsg.js"></script>
+        <script type="text/javascript" src="js/fn/view/fvTimer.js"></script>
+        <script type="text/javascript" src="js/fn/view/fvVisibility.js"></script>
+        <script type="text/javascript" src="js/fn/fcGame.js"></script>
+        <script type="text/javascript" src="js/difficulties.js"></script>
+        <script type="text/javascript" src="js/evs.js"></script>
+        <script type="text/javascript" src="js/fmlas.js"></script>
+        <script type="text/javascript" src="js/inputViolations.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        <!-- These are the unit test counterparts -->
+        <script type="text/javascript" src="js/unitTest/model/board/unitTestFMBaseBoard.js"></script>
+        <script type="text/javascript" src="js/unitTest/model/board/unitTestFMBoard.js"></script>
+        <script type="text/javascript" src="js/unitTest/model/board/unitTestFMNewBoard.js"></script>
+        <script type="text/javascript" src="js/unitTest/model/filledCoors/unitTestFMBaseFilledCoors.js"></script>
+        <script type="text/javascript" src="js/unitTest/model/filledCoors/unitTestFMFilledCoors.js"></script>
+        <script type="text/javascript" src="js/unitTest/model/filledCoors/unitTestFMNewFilledCoors.js"></script>
+        <script type="text/javascript" src="js/unitTest/model/unitTestFM.js"></script>
+        <script type="text/javascript" src="js/unitTest/model/unitTestFMInputViolations.js"></script>
+        <script type="text/javascript" src="js/unitTest/model/unitTestFMIsWon.js"></script>
+        <script type="text/javascript" src="js/unitTest/model/unitTestFMPickedCombination.js"></script>
+        <script type="text/javascript" src="js/unitTest/model/unitTestFMRecDemo.js"></script>
+        <script type="text/javascript" src="js/unitTest/view/sq/unitTestFVRenderedFixedSq.js"></script>
+        <script type="text/javascript" src="js/unitTest/view/sq/unitTestFVRenderedSq.js"></script>
+        <script type="text/javascript" src="js/unitTest/view/sq/unitTestFVRenderedSqs.js"></script>
+        <script type="text/javascript" src="js/unitTest/view/sq/unitTestFVRenderSqs.js"></script>
+        <script type="text/javascript" src="js/unitTest/view/unitTestFV.js"></script>
+        <script type="text/javascript" src="js/unitTest/unitTest.js"></script>
+        <!-- -->
+
+    </body>
+
+</html>

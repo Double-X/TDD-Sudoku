@@ -1,0 +1,1 @@
+This Sudoku only guarantees the existence but not uniqueness of solutions. It has 2x2, 3x3, 4x4, 5x5 and 6x6 boards.
